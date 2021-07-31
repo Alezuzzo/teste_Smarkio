@@ -58,22 +58,11 @@ async function play(request, response) {
       return text_to_speech.repairWavHeaderStream(audio);
     })
     .then((repairedFile) => {
-      console.log(repairedFile);
-      if (!fs.existsSync("/front-smarkio/audio")) {
-        fs.mkdir("audio", (err) => {
-          if (err) return err;
 
-           
-          fs.writeFileSync(
-            `/front-smarkio/audio/${id}.wav`,
-            repairedFile,
-            (err) => {
-              if (err) return err;
-              console.log("Directory and File Saved");
-            }
-          );
-        });
-      }
+      fs.writeFileSync(`../front-smarkio/audio/${id}.wav`, repairedFile, (err) => {
+        if (err) return err;
+        console.log("Directory and File Saved");
+      });
     })
     .catch((err) => {
       console.log(err);
