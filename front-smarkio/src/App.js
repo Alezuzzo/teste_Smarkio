@@ -1,6 +1,10 @@
 import "./App.css";
 
 function App() {
+
+  async function apiSpeech() {
+    
+  } 
   return (
     <div class="container">
       <div class = "commentArea">
