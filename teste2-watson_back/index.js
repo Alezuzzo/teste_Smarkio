@@ -2,7 +2,7 @@ const express = require('express')
 const routes = require('./routes')
 const connectionDb = require('./db')
 const app = express()
-const port = 3000
+const port = 3333
 
 
 connectionDb();
