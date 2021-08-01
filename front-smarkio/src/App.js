@@ -11,8 +11,6 @@ function App() {
     setAllComments(resJSON);
   };
 
-  
-
   const handleChangeText = (event) => {
     setText(event.target.value);
   };
@@ -25,8 +23,8 @@ function App() {
       },
       body: JSON.stringify({ text }),
     };
-    
-    let response = await fetch("http://localhost:3333/new", settings);
+
+    await fetch("http://localhost:3333/new", settings);
     setText("");
     getAll();
   };
@@ -40,21 +38,34 @@ function App() {
       },
       body: JSON.stringify({ text, id }),
     };
-    
+
     let response = await fetch("http://localhost:3333/play", settings);
     console.log(response);
-    if(response){
+    if (response) {
       listenAudio(id);
     }
-    
   };
 
   const listenAudio = (id) => {
-    let audio = new Audio(`../audio/${id}.wav`);
+    var audio = new Audio(`../front-smarkio/audio/ ${id}.wav`);
     audio.play();
 
-    console.log(id, audio);
-  }
+    // const playPromise = audio.play();
+
+    //   if (playPromise !== undefined) {
+    //     playPromise
+    //       .then(_ => {
+    //         // Automatic playback started!
+    //         // Show playing UI.
+    //         console.log("audio played auto");
+    //       })
+    //       .catch(error => {
+    //         // Auto-play was prevented
+    //         // Show paused UI.
+    //         console.log("playback prevented");
+    //       });
+    //   }
+  };
 
   useEffect(() => {
     getAll();
@@ -77,14 +88,20 @@ function App() {
       <div class="allComments">
         <span>Comentários</span>
         <div>
-          {allComments.length > 0 && allComments.map((item) => (
-            <div class="card">
-              <p class="comments">
-                {item.comment}
-              </p>
-              <button onClick = {()=>{createAudio(item.id, item.comment)}} class="buttonListen">Ouvir</button>
-            </div>
-          ))}
+          {allComments.length > 0 &&
+            allComments.map((item) => (
+              <div class="card">
+                <p class="comments">{item.comment}</p>
+                <button
+                  onClick={() => {
+                    createAudio(item.id, item.comment);
+                  }}
+                  class="buttonListen"
+                >
+                  Ouvir
+                </button>
+              </div>
+            ))}
         </div>
       </div>
     </div>
