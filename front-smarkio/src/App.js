@@ -11,7 +11,7 @@ function App() {
     setAllComments(resJSON);
   };
 
-  console.log(allComments);
+  
 
   const handleChangeText = (event) => {
     setText(event.target.value);
@@ -25,11 +25,36 @@ function App() {
       },
       body: JSON.stringify({ text }),
     };
-    console.log(text);
+    
     let response = await fetch("http://localhost:3333/new", settings);
     setText("");
     getAll();
   };
+
+  const createAudio = async (id, text) => {
+    const settings = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text, id }),
+    };
+    
+    let response = await fetch("http://localhost:3333/play", settings);
+    console.log(response);
+    if(response){
+      listenAudio(id);
+    }
+    
+  };
+
+  const listenAudio = (id) => {
+    let audio = new Audio(`../audio/${id}.wav`);
+    audio.play();
+
+    console.log(id, audio);
+  }
 
   useEffect(() => {
     getAll();
@@ -57,7 +82,7 @@ function App() {
               <p class="comments">
                 {item.comment}
               </p>
-              <button class="buttonListen">Ouvir</button>
+              <button onClick = {()=>{createAudio(item.id, item.comment)}} class="buttonListen">Ouvir</button>
             </div>
           ))}
         </div>
