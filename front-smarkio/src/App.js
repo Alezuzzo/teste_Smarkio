@@ -70,7 +70,15 @@ function App() {
           cols="30"
           rows="10"
         ></textarea>
-        <button onClick={createComment} class="buttonCad">
+        <button
+          onClick={() => {
+            if (text.length > 0) {
+              createComment()
+            }
+            console.log(text.length);
+          }}
+          class="buttonCad"
+        >
           Cadastrar
         </button>
       </div>
@@ -84,9 +92,7 @@ function App() {
               <div class="card">
                 <p class="comments">{item.comment}</p>
                 <button
-                  onClick={() => {
-                    createAudio(item.id, item.comment);
-                  }}
+                  onClick={() => createAudio(item.id, item.comment)}
                   class="buttonListen"
                 >
                   Ouvir
