@@ -20,17 +20,22 @@ connection = mysql.createConnection({
 });
 
 async function insertNewComment(request, response) {
+  let clientId = 0;
   let { text } = request.body;
 
   connection.connect(function (err) {
     let sql = `INSERT INTO comments(comment) VALUES ('${text}')`;
 
-    connection.query(sql, function (err, result) {
+    let query = connection.query(sql, function (err, result) {
       if (err) throw err;
-      return result;
+      clientId = result.insertId;
+
+      return response.json(result.insertId);
     });
+    console.log(query)
   });
-  return response.json(text);
+  console.log(clientId);
+  
 }
 
 async function selectAllComments(request, response) {
@@ -50,7 +55,6 @@ async function play(request, response) {
     accept: "audio/wav",
   };
 
-  
   text_to_speech
     .synthesize(params)
     .then((response) => {
@@ -58,11 +62,14 @@ async function play(request, response) {
       return text_to_speech.repairWavHeaderStream(audio);
     })
     .then((repairedFile) => {
-
-      fs.writeFileSync(`../front-smarkio/audio/${id}.wav`, repairedFile, (err) => {
-        if (err) return err;
-        console.log("Directory and File Saved");
-      });
+      fs.writeFileSync(
+        `../front-smarkio/public/audio/${id}.wav`,
+        repairedFile,
+        (err) => {
+          if (err) return err;
+          console.log("Directory and File Saved");
+        }
+      );
     })
     .catch((err) => {
       console.log(err);

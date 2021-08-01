@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import ReactAudioPlayer from "react-audio-player";
+
 import "./App.css";
 
 function App() {
   const [text, setText] = useState("");
   const [allComments, setAllComments] = useState([]);
-
+  const [id, setId] = useState(0);
   const getAll = async () => {
     let response = await fetch("http://localhost:3333/all");
     let resJSON = await response.json();
@@ -40,31 +42,15 @@ function App() {
     };
 
     let response = await fetch("http://localhost:3333/play", settings);
-    console.log(response);
-    if (response) {
+    let resJSON = await response.json();
+
+    if (resJSON) {
       listenAudio(id);
     }
   };
 
-  const listenAudio = (id) => {
-    var audio = new Audio(`../front-smarkio/audio/ ${id}.wav`);
-    audio.play();
-
-    // const playPromise = audio.play();
-
-    //   if (playPromise !== undefined) {
-    //     playPromise
-    //       .then(_ => {
-    //         // Automatic playback started!
-    //         // Show playing UI.
-    //         console.log("audio played auto");
-    //       })
-    //       .catch(error => {
-    //         // Auto-play was prevented
-    //         // Show paused UI.
-    //         console.log("playback prevented");
-    //       });
-    //   }
+  const listenAudio = async (id) => {
+    setId(id);
   };
 
   useEffect(() => {
@@ -72,6 +58,10 @@ function App() {
   }, []);
   return (
     <div class="container">
+      <ReactAudioPlayer
+        src={process.env.PUBLIC_URL + `/audio/${id}.wav`}
+        autoPlay={id !== 0 ? true : false}
+      />
       <div class="commentArea">
         <span>Comentários</span>
         <textarea
@@ -87,6 +77,7 @@ function App() {
       <div class="line"></div>
       <div class="allComments">
         <span>Comentários</span>
+
         <div>
           {allComments.length > 0 &&
             allComments.map((item) => (
