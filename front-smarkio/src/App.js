@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const [text, setText] = useState("");
+  const [allComments, setAllComments] = useState([]);
+
+  const getAll = async () => {
+    let response = await fetch("http://localhost:3333/all");
+    let resJSON = await response.json();
+    setAllComments(resJSON);
+  };
+
+  console.log(allComments);
+
   const handleChangeText = (event) => {
     setText(event.target.value);
   };
@@ -18,7 +28,12 @@ function App() {
     console.log(text);
     let response = await fetch("http://localhost:3333/new", settings);
     setText("");
+    getAll();
   };
+
+  useEffect(() => {
+    getAll();
+  }, []);
   return (
     <div class="container">
       <div class="commentArea">
@@ -37,22 +52,14 @@ function App() {
       <div class="allComments">
         <span>Comentários</span>
         <div>
-          <div class="card">
-            <p class="comments">
-              lorem ipsum dolor sit amet consectetur atur atur atur atur atur
-              atur a lorem ipsum dolor sit amet consectetur atur a lorem ipsum
-              dolor sit amet consectetur a lorem ipsum dolor sit.
-            </p>
-            <button class="buttonListen">Ouvir</button>
-          </div>
-          <div class="card">
-            <p class="comments">
-              lorem ipsum dolor sit amet consectetur atur atur atur atur atur
-              atur a lorem ipsum dolor sit amet consectetur atur a lorem ipsum
-              dolor sit amet consectetur a lorem ipsum dolor sit.
-            </p>
-            <button class="buttonListen">Ouvir</button>
-          </div>
+          {allComments.length > 0 && allComments.map((item) => (
+            <div class="card">
+              <p class="comments">
+                {item.comment}
+              </p>
+              <button class="buttonListen">Ouvir</button>
+            </div>
+          ))}
         </div>
       </div>
     </div>
