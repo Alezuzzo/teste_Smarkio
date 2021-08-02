@@ -24,7 +24,7 @@ Primeiramente instale o necessário para começar:
 **Clone o projeto e acesse a pasta.**
 
 ## Configure o banco de dados
-**Altere o arquivo config.json dentro da pasta backend-smarkio, trocando o usuário e senha.
+Altere o arquivo config.json dentro da pasta backend-smarkio, trocando o usuário e senha.
 
 ```bash
   {
@@ -33,7 +33,7 @@ Primeiramente instale o necessário para começar:
   }
 ```
 
-**Se não estiver usando MariaDB, deve-se executar o comando "ALTER USER '<usuário>'@'localhost' IDENTIFIED WITH mysql_native_password BY '<senha>'**
+**Se não estiver usando MariaDB, deve-se executar o comando ALTER USER '<usuário>'@'localhost' IDENTIFIED WITH mysql_native_password BY '<senha>'**
 
 ## Instale as dependências
 
