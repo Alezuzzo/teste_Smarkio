@@ -33,7 +33,7 @@ Altere o arquivo config.json dentro da pasta backend-smarkio, trocando o usuári
   }
 ```
 
-**Se não estiver usando MariaDB, deve-se executar o comando ALTER USER '<usuário>'@'localhost' IDENTIFIED WITH mysql_native_password BY '<senha>'**
+**Se não estiver usando MariaDB, deve-se executar o comando "ALTER USER '<usuário>'@'localhost' IDENTIFIED WITH mysql_native_password BY '<senha>'**
 
 ## Instale as dependências
 
@@ -63,7 +63,7 @@ nodemon
 
 ### Utilizando
 
-Agora ensira um texto na caixa de comentário e aperte o botão cadastrar, após, será possível apertar o botão ouvir a frente para executar o áudio.
+Agora insira um texto na caixa de comentário e aperte o botão cadastrar, após, será possível apertar o botão ouvir a frente para executar o áudio.
 
 💻 **Authors**
 
