@@ -8,7 +8,7 @@
   </a>
 </p>
 
-## 👨🏻‍💻 Sobre o projeto
+## Sobre o projeto
 
 -  <p style="color: black;">O Text To Speech converte o texto escrito em audio, com pouquissímo atraso e com entonação apropriada para seu idioma e dialeto, fornecendo maior acessibilidade. </p>
 
