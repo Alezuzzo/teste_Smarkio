@@ -21,9 +21,9 @@ Primeiramente instale o necessário para começar:
 
 ## Iniciando
 
-**Clone o projeto e acesse a pasta**
+**Clone o projeto e acesse a pasta.**
 
-## Configure o banco de dados de dad
+## Configure o banco de dados
 **Altere o arquivo config.json dentro da pasta backend-smarkio, trocando o usuário e senha.
 
 ```bash
