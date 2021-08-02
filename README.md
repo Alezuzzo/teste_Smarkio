@@ -1,4 +1,4 @@
-<h1 align="center">Time To Speech - IBM Watson</h1>
+<h1 align="center">Text To Speech - IBM Watson</h1>
 
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/franmoraiiss/pomodoro-timer">
