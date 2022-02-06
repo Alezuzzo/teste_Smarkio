@@ -1,8 +1,6 @@
 <h1 align="center">Text To Speech - IBM Watson</h1>
 
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/franmoraiiss/pomodoro-timer">
-
   <a href="https://www.linkedin.com/in/thalles-alexsander-faria-muzzo-76baa41a9/">
     <img alt="Made by" src="https://img.shields.io/badge/made%20by-Thalles%20Alexsander-gree">
   </a>
